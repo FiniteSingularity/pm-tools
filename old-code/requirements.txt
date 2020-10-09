@@ -1,0 +1,19 @@
+# Math/Stat libraries
+numpy
+pandas
+sklearn
+statsmodels
+scipy
+cvxopt
+
+# Visualization
+seaborn
+matplotlib
+
+# Data Loading
+yfinance
+pandas_datareader
+
+# Dev Environment
+ipython
+jupyter
