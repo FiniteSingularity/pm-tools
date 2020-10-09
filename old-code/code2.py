@@ -20,8 +20,8 @@ from portfolio import portfolio, benchmarks
 yf.pdr_override()
 
 holdings = pd.DataFrame(portfolio).fillna(0.0)
-holdings['min_weight'] = 0.02
-holdings['max_weight'] = 0.10
+holdings['min_weight'] = 0.0
+holdings['max_weight'] = 1.0
 
 print('---- Downloading Ticker Data ----')
 holdings_th = pdr.get_data_yahoo(holdings['symbol'].tolist())['Adj Close'][holdings['symbol'].tolist()]

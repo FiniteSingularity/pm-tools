@@ -26,8 +26,11 @@ def portfolio_sigma(weights, daily_returns):
     return np.sqrt((w.dot(cov)).dot(w.T))
 
 def generate_random_weights(n_portfolios, n_holdings):
-    w = np.random.uniform(size=(n_portfolios, n_holdings))
-    return w/w.sum(axis=1)[:,None]
+    alphas_conc = np.full((n_holdings), 0.05)
+    alphas_uni = np.full((n_holdings), 1.0)
+    conc = np.random.dirichlet(alphas_conc, size=(int(n_portfolios/2)))
+    uni = np.random.dirichlet(alphas_uni, size=(int(n_portfolios/2)))
+    return np.vstack([conc, uni])
 
 def multi_portfolio_sigma(weights, daily_returns):
     w = weights.to_numpy()

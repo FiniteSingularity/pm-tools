@@ -24,7 +24,8 @@ class Common(Configuration):
 
         # Your apps
         'pmtoolsapi.users',
-
+        'pmtoolsapi.symbols',
+        'pmtoolsapi.benchmarks',
     )
 
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/

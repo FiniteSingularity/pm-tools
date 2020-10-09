@@ -1,0 +1,14 @@
+1. Install Docker
+2. Install VSCode
+3. Edit deployment/env_sample
+    - Change DB_PW, POSTGRES_PASSWORD, SECRET_KEY
+4. Copy env_sample to deployment/.env
+5. Copy env_sample to api/.env
+6. Open api directory as a workspace in VSCode
+7. Clicking Open in Container
+8. once running, from terminal in VSCode, issue the command:
+    ./manage migrate
+9. Then issue the command:
+    ./manage createsuperuser
+10. Issue the command:
+    ./manage runserver 0.0.0.0:8000
