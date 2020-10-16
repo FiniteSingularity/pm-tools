@@ -7,11 +7,21 @@ from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken import views
 from .users.views import UserViewSet, UserCreateViewSet
 from .symbols.views import SymbolViewSet
+from .benchmarks.views import BenchmarkViewSet
+from .portfolios.views import (
+    ModelPortfolioViewSet,
+    ModelPortfolioHoldingViewSet,
+    ModelPortfolioBenchViewSet
+)
 
 router = DefaultRouter(trailing_slash=False)
 router.register(r'users', UserViewSet)
 router.register(r'users', UserCreateViewSet)
 router.register(r'symbols', SymbolViewSet)
+router.register(r'benchmarks', BenchmarkViewSet)
+router.register(r'model-portfolios/holdings', ModelPortfolioHoldingViewSet)
+router.register(r'model-portfolios/benchmarks', ModelPortfolioBenchViewSet)
+router.register(r'model-portfolios', ModelPortfolioViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

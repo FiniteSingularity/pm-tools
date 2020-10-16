@@ -8,6 +8,9 @@ class Benchmark(models.Model):
     name = models.CharField(max_length=255)
     ticker = models.ForeignKey(Symbol, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.name}: {self.ticker.ticker}"
+
     def calculate_beta(self, equity, num_days=756):
         rows = (num_days+1)
         eq_pr = equity.price_history.all().order_by('date')
