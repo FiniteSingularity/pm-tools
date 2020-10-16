@@ -8,7 +8,7 @@ from rest_framework.authtoken import views
 from .users.views import UserViewSet, UserCreateViewSet
 from .symbols.views import SymbolViewSet
 
-router = DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 router.register(r'users', UserViewSet)
 router.register(r'users', UserCreateViewSet)
 router.register(r'symbols', SymbolViewSet)

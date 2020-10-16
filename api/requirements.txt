@@ -46,6 +46,7 @@ sklearn
 statsmodels
 scipy
 cvxopt
+django-pandas
 
 # Linting
 pylint
