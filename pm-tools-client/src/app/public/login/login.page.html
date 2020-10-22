@@ -5,5 +5,20 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-item>
+      <ion-label>Username:</ion-label>
+      <ion-input [(ngModel)]="username" class="ion-text-right"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password:</ion-label>
+      <ion-input [(ngModel)]="password" type="password" class="ion-text-right"></ion-input>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="login()">Login</ion-button>
+  </ion-toolbar>
+</ion-footer>

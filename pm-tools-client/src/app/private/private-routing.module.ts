@@ -8,6 +8,14 @@ const routes = [
     loadChildren: () =>
       import('./dashboard/dashboard.module').then((m) => m.DashboardPageModule),
   },
+  {
+    path: 'model-portfolios',
+    loadChildren: () => import('./portfolios/portfolios.module').then( m => m.PortfoliosPageModule)
+  },
+  {
+    path: 'model-portfolios/:id',
+    loadChildren: () => import('./model-portfolio/model-portfolio.module').then( m => m.ModelPortfolioPageModule)
+  },
 ];
 
 @NgModule({

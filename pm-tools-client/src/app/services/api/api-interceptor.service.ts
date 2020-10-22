@@ -25,7 +25,7 @@ export class ApiInterceptorService implements HttpInterceptor, OnDestroy {
     private router: Router
   ) {
     this.authSub = this.authService.authenticationState.subscribe(authDat => {
-      this.token = authDat.viewToken ? authDat.viewToken : authDat.token;
+      this.token = authDat.token ? authDat.token : authDat.token;
     });
   }
 

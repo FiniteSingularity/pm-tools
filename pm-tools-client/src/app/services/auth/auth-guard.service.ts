@@ -21,14 +21,11 @@ export class AuthGuardService implements CanActivate {
     state: RouterStateSnapshot
   ): Promise<boolean> {
     const authStatus = await this.authService.authenticationStatus();
-
+    console.log('Checking Authguard');
     if (authStatus.authenticated) {
-      if (authStatus.firstLogin && state.url !== '/private/first-login') {
-        this.router.navigate(['/private/first-login']);
-      }
       return true;
     }
-    this.router.navigate(['/login']);
+    this.router.navigate(['/public/login']);
     return false;
   }
 }

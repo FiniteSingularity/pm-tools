@@ -15,8 +15,13 @@ export class AppComponent implements OnInit {
     {
       title: 'Dashboard',
       url: '/private/dashboard',
-      icon: 'speedometer-sharp',
+      icon: 'speedometer',
     },
+    {
+      title: 'Portfolios',
+      url: '/private/model-portfolios',
+      icon: 'briefcase'
+    }
   ];
 
   constructor(

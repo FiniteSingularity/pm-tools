@@ -21,6 +21,7 @@ class Common(Configuration):
         'rest_framework',            # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
         'django_filters',            # for filtering rest endpoints
+        'corsheaders',
 
         # Your apps
         'pmtoolsapi.users',
@@ -32,6 +33,7 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/2.0/topics/http/middleware/
     MIDDLEWARE = (
         'django.middleware.security.SecurityMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
@@ -185,6 +187,8 @@ class Common(Configuration):
             },
         }
     }
+
+    CORS_ORIGIN_ALLOW_ALL = True
 
     # Custom user app
     AUTH_USER_MODEL = 'users.User'

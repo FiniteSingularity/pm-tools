@@ -1,0 +1,20 @@
+<ng-container *ngIf="modelPortfolio">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Portfolio - {{ modelPortfolio.name }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <ion-list>
+      <ion-item *ngFor="let hb of holdingBetas">
+        <ion-label>{{ hb.ticker }}</ion-label>
+        <ion-note slot="end">{{ hb.beta }}</ion-note>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ng-container>
+<ng-container *ngIf="!modelPortfolio">
+  <h1>LOADING...</h1>
+</ng-container>
+

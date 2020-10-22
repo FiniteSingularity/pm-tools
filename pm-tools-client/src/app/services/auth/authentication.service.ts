@@ -1,6 +1,6 @@
 import { catchError } from 'rxjs/operators';
 import { ApiService } from '../api/api.service';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subscription, throwError } from 'rxjs';
 import { Storage } from '@ionic/storage';
@@ -9,13 +9,6 @@ import { environment } from 'src/environments/environment';
 
 const TOKEN_KEY = 'authToken';
 const BASE_URL_KEY = 'baseApiUrl';
-const BASE_WS_KEY = 'baseWsUrl';
-const ACTIVE_USER_KEY = 'user';
-const UPDATE_URL_KEY = 'updateUrl';
-const UPDATE_TOKEN_KEY = 'updateToken';
-const UPDATE_DEPLOYMENT_KEY = 'updateDeployment';
-const VIEW_USER_KEY = 'viewUser';
-const VIEW_USER_TOKEN_KEY = 'viewAuthToken';
 const BASE_URL = environment.apiUrl;
 
 export interface ApiAuth {
@@ -46,7 +39,8 @@ export class AuthenticationService {
     private storage: Storage,
     private plt: Platform,
     private http: HttpClient,
-    private api: ApiService
+    private api: ApiService,
+    private navCtrl: NavController,
   ) {
     let readyResolve: (value: string) => void;
     this.readyPromise = new Promise((res) => {
@@ -71,13 +65,14 @@ export class AuthenticationService {
         async (data) => {
           const promises = [this.storage.set(TOKEN_KEY, data.token)];
           const res = await Promise.all(promises);
-          this.api.url = `${BASE_URL}/api/v1`;
+          this.api.url = `${BASE_URL}`;
           this.token = data.token;
           this.authenticationState.next({
             authenticated: true,
             loginError: null,
             ...data,
           });
+          this.navCtrl.navigateRoot(['/']);
         },
         (error) => {
           console.log('error!');
@@ -96,13 +91,6 @@ export class AuthenticationService {
     const promises = [
       this.storage.remove(TOKEN_KEY),
       this.storage.remove(BASE_URL_KEY),
-      this.storage.remove(ACTIVE_USER_KEY),
-      this.storage.remove(BASE_WS_KEY),
-      this.storage.remove(UPDATE_URL_KEY),
-      this.storage.remove(UPDATE_TOKEN_KEY),
-      this.storage.remove(UPDATE_DEPLOYMENT_KEY),
-      this.storage.remove(VIEW_USER_KEY),
-      this.storage.remove(VIEW_USER_TOKEN_KEY),
     ];
     const data = await Promise.all(promises);
     this.api.url = '';
@@ -122,20 +110,12 @@ export class AuthenticationService {
     const keys = [
       TOKEN_KEY,
       BASE_URL_KEY,
-      ACTIVE_USER_KEY,
-      BASE_WS_KEY,
-      UPDATE_URL_KEY,
-      UPDATE_TOKEN_KEY,
-      UPDATE_DEPLOYMENT_KEY,
-      VIEW_USER_KEY,
-      VIEW_USER_TOKEN_KEY,
     ];
     const res = await this.getMultipleKeys(keys);
     if (res) {
       const auth = TOKEN_KEY in res && res[TOKEN_KEY] ? true : false;
       console.log(`setting api url to ${res[BASE_URL_KEY]}`);
-      this.api.url = res[BASE_URL_KEY];
-      this.api.wsUrl = res[BASE_WS_KEY];
+      this.api.url = `${BASE_URL}`;
       this.token = res[TOKEN_KEY];
       const state: AuthStatus = {
         authenticated: auth,
