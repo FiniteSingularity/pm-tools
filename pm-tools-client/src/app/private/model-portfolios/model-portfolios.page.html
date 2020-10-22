@@ -6,7 +6,11 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let port of modelPortfolios" (click)="portfolioClicked(port)">
+    <ion-item
+      button
+      *ngFor="let port of modelPortfolios"
+      (click)="portfolioClicked(port)"
+    >
       <ion-label>{{ port.name }}</ion-label>
     </ion-item>
   </ion-list>

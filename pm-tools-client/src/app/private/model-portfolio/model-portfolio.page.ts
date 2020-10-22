@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ModelPortfolio, ModelPortHoldingsBeta } from '@app/models/portfolio.models';
+import { ModelPortfolio, ModelPortHoldingBeta } from '@app/models/portfolio.models';
 import { ModelPortfolioService } from '@services/api/model-portfolio.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { ModelPortfolioService } from '@services/api/model-portfolio.service';
 export class ModelPortfolioPage implements OnInit {
   portfolioId: string;
   modelPortfolio: ModelPortfolio;
-  holdingBetas: {ticker: string, beta: number}[] = [];
+  holdingBetas: ModelPortHoldingBeta[] = [];
   constructor(private modelPortSvc: ModelPortfolioService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -22,11 +22,7 @@ export class ModelPortfolioPage implements OnInit {
         console.log(res);
       });
       this.modelPortSvc.holdingBetas(this.portfolioId).subscribe( res => {
-        console.log(res)
-        this.holdingBetas = Object.keys(res.betas).map(key => {
-          return {'ticker': key, 'beta': res.betas[key]}
-        });
-        console.log(this.holdingBetas);
+        this.holdingBetas = res.betas;
       })
     });
   }

@@ -4,11 +4,11 @@ import { NavController } from '@ionic/angular';
 import { ModelPortfolioService } from '@services/api/model-portfolio.service';
 
 @Component({
-  selector: 'app-portfolios',
-  templateUrl: './portfolios.page.html',
-  styleUrls: ['./portfolios.page.scss'],
+  selector: 'app-model-portfolios',
+  templateUrl: './model-portfolios.page.html',
+  styleUrls: ['./model-portfolios.page.scss'],
 })
-export class PortfoliosPage implements OnInit {
+export class ModelPortfoliosPage implements OnInit {
   modelPortfolios: ModelPortfolio[] = [];
 
   constructor(
