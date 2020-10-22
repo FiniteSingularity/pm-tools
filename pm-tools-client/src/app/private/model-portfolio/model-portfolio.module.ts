@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { ModelPortfolioPageRoutingModule } from './model-portfolio-routing.module';
 
 import { ModelPortfolioPage } from './model-portfolio.page';
+import { D3Module } from '@components/d3/d3.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    D3Module,
     ModelPortfolioPageRoutingModule
   ],
   declarations: [ModelPortfolioPage]
