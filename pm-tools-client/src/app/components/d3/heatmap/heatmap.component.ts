@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CorrelationMatrixEntry } from '@app/models/portfolio.models';
 import * as d3 from 'd3';
-import * as d3Sel from 'd3-selection';
 
 @Component({
   selector: 'app-heatmap',
