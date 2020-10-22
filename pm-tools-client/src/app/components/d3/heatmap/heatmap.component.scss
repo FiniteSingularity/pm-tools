@@ -1,0 +1,10 @@
+#heatmap {
+    position: relative;
+}
+
+#tooltip-holder {
+    position: absolute;
+    z-index: 10000;
+    display: block;
+    margin: 0;
+}
