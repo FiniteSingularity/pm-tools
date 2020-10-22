@@ -10,7 +10,7 @@ const routes = [
   },
   {
     path: 'model-portfolios',
-    loadChildren: () => import('./portfolios/portfolios.module').then( m => m.PortfoliosPageModule)
+    loadChildren: () => import('./model-portfolios/model-portfolios.module').then( m => m.ModelPortfoliosPageModule)
   },
   {
     path: 'model-portfolios/:id',

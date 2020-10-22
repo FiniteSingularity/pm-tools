@@ -9,10 +9,11 @@ export interface ModelPortfolioListResponse extends PaginatedResponse {
     results: ModelPortfolio[];
 }
 
-export interface ModelPortHoldingsBeta {
-    [key: string]: number;
+export interface ModelPortHoldingBeta {
+    ticker: string;
+    beta: number;
 }
 
 export interface ModelPortHoldingsBetaResponse {
-    betas: ModelPortHoldingsBeta;
+    betas: ModelPortHoldingBeta[];
 }

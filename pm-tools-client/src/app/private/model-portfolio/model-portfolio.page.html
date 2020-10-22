@@ -1,17 +1,25 @@
 <ng-container *ngIf="modelPortfolio">
   <ion-header>
     <ion-toolbar>
+      <ion-back-button slot="start"></ion-back-button>
       <ion-title>Portfolio - {{ modelPortfolio.name }}</ion-title>
     </ion-toolbar>
   </ion-header>
   
   <ion-content class="ion-padding">
-    <ion-list>
-      <ion-item *ngFor="let hb of holdingBetas">
-        <ion-label>{{ hb.ticker }}</ion-label>
-        <ion-note slot="end">{{ hb.beta }}</ion-note>
-      </ion-item>
-    </ion-list>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Holdings</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let hb of holdingBetas">
+            <ion-label>{{ hb.ticker }}</ion-label>
+            <ion-text slot="end">{{ hb.beta|number:'1.2-2' }}</ion-text>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
   </ion-content>
 </ng-container>
 <ng-container *ngIf="!modelPortfolio">

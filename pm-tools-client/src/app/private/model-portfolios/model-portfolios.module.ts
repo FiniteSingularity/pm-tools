@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PortfoliosPageRoutingModule } from './portfolios-routing.module';
+import { PortfoliosPageRoutingModule } from './model-portfolios-routing.module';
 
-import { PortfoliosPage } from './portfolios.page';
+import { ModelPortfoliosPage } from './model-portfolios.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { PortfoliosPage } from './portfolios.page';
     IonicModule,
     PortfoliosPageRoutingModule
   ],
-  declarations: [PortfoliosPage]
+  declarations: [ModelPortfoliosPage]
 })
-export class PortfoliosPageModule {}
+export class ModelPortfoliosPageModule {}

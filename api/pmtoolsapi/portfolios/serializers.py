@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import ModelPortfolio, ModelPortfolioHolding, ModelPortfolioBench
 
+
 class ModelPortfolioSerializer(serializers.ModelSerializer):
     class Meta:
         model = ModelPortfolio

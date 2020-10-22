@@ -11,7 +11,7 @@ class ModelPortfolio(models.Model):
 
     def __str__(self):
         return self.name
-    
+
     def get_symbols_th(self, symbols, num_trading_days):
         data = pd.DataFrame()
         for sym in symbols:
@@ -54,26 +54,41 @@ class ModelPortfolio(models.Model):
         holding_benchmarks = {}
         
         for holding in self.holdings.all():
-            holding_benchmarks[holding.holding.ticker] = holding.benchmark.ticker.ticker
+            holding_benchmarks[holding.holding.ticker] = holding.benchmark.benchmark.ticker.ticker
 
-        betas = {}
+        betas = []
         for symbol in holdings_th.columns:
             bench_symbol = holding_benchmarks[symbol]
             beta = holdings_dr[symbol].cov(benchmarks_dr[bench_symbol])/benchmarks_dr[bench_symbol].var()
-            betas[symbol] = beta    
+            betas.append({'ticker': symbol, 'beta': beta})
 
         return betas
+
 
 class ModelPortfolioHolding(models.Model):
     portfolio = models.ForeignKey(ModelPortfolio, on_delete=models.CASCADE, related_name='holdings')
     holding = models.ForeignKey(Symbol, on_delete=models.PROTECT, related_name='portfolio_holdings')
     weight = models.FloatField(default=0.0)
-    benchmark = models.ForeignKey(Benchmark, on_delete=models.PROTECT, related_name='portfolio_holdings')
+    benchmark = models.ForeignKey(
+        'ModelPortfolioBench',
+        on_delete=models.PROTECT,
+        related_name='port_holdings',
+    )
 
     def __str__(self):
-        return f"{self.holding.ticker} [{self.benchmark.ticker.ticker}]: {self.weight}"
+        return f"{self.holding.ticker} [{self.benchmark.benchmark.ticker.ticker}]: {self.weight}"
+
 
 class ModelPortfolioBench(models.Model):
-    portfolio = models.ForeignKey(ModelPortfolio, on_delete=models.CASCADE, related_name='benchmarks', null=True)
-    benchmark = models.ForeignKey(Benchmark, on_delete=models.PROTECT, related_name='benchmarks')
+    portfolio = models.ForeignKey(
+        ModelPortfolio,
+        on_delete=models.CASCADE,
+        related_name='benchmarks',
+        null=True
+    )
+    benchmark = models.ForeignKey(
+        Benchmark,
+        on_delete=models.PROTECT,
+        related_name='benchmarks'
+    )
     expected_return = models.FloatField(default=0.0)
