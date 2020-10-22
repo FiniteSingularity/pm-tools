@@ -17,3 +17,14 @@ export interface ModelPortHoldingBeta {
 export interface ModelPortHoldingsBetaResponse {
     betas: ModelPortHoldingBeta[];
 }
+
+export interface CorrelationMatrixEntry {
+    t1: string;
+    t2: string;
+    value: number;
+}
+
+export interface ModelPortCorrResponse {
+    corr: CorrelationMatrixEntry[];
+    tickers: string[];
+}
